@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishaan — FSC &amp; MDCAT Prep</title>
+<meta name="description" content="Nishaan helps FSC pre-medical and MDCAT aspirants study smarter with chapter-wise MCQs, flashcards, timed tests and progress tracking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ================= AUTH GATE ================= -->
+<div id="auth-gate" class="auth-gate">
+  <div class="auth-gate__panel">
+    <div class="auth-gate__brand">
+      <span class="mark">ن</span>
+      <span class="brand-word">Nishaan</span>
+    </div>
+    <p class="auth-gate__tagline">Nishaan means "the mark" — the score you're aiming for. Sign in to start studying.</p>
+
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab is-active" data-tab="login" role="tab" aria-selected="true">Log in</button>
+      <button class="auth-tab" data-tab="signup" role="tab" aria-selected="false">Sign up</button>
+    </div>
+
+    <form id="login-form" class="auth-form is-active" novalidate>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email" required placeholder="ali@example.com">
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" name="password" autocomplete="current-password" required placeholder="••••••••">
+      </label>
+      <p class="field-error" id="login-error" role="alert"></p>
+      <button type="submit" class="btn btn--primary btn--block">Log in</button>
+      <button type="button" class="btn btn--ghost btn--block" id="demo-login">Continue with a demo account</button>
+    </form>
+
+    <form id="signup-form" class="auth-form" novalidate>
+      <label class="field">
+        <span>Full name</span>
+        <input type="text" name="name" autocomplete="name" required placeholder="Ali Ahmed">
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" autocomplete="email" required placeholder="ali@example.com">
+      </label>
+      <label class="field">
+        <span>Target</span>
+        <select name="target" required>
+          <option value="" disabled selected>What are you preparing for?</option>
+          <option value="fsc1">FSC Part 1 (Pre-Medical)</option>
+          <option value="fsc2">FSC Part 2 (Pre-Medical)</option>
+          <option value="mdcat">MDCAT</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <input type="password" name="password" autocomplete="new-password" required minlength="6" placeholder="At least 6 characters">
+      </label>
+      <p class="field-error" id="signup-error" role="alert"></p>
+      <button type="submit" class="btn btn--primary btn--block">Create account</button>
+    </form>
+
+    <p class="auth-gate__note">This is a demo sign-in — accounts are stored only in your browser, not on a server.</p>
+  </div>
+</div>
+
+<!-- ================= SITE ================= -->
+<div id="site" class="site" hidden>
+
+  <header class="nav">
+    <div class="nav__inner">
+      <div class="nav__brand"><span class="mark">ن</span> Nishaan</div>
+      <nav class="nav__links">
+        <a href="#subjects">Subjects</a>
+        <a href="#tools">Study tools</a>
+        <a href="#results">Results</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__user">
+        <span id="user-name" class="nav__username"></span>
+        <button id="logout-btn" class="btn btn--ghost btn--small">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="hero__kicker">For FSC Part I &amp; II and MDCAT aspirants</p>
+        <h1>Study for the exam that decides your seat, not the one your syllabus assumes you'll take.</h1>
+        <p class="hero__lede">MDCAT rewards speed and recall under pressure. Nishaan turns your FSC textbooks into chapter-wise MCQs, timed papers and revision decks built around the actual PM&amp;DC weightage — Biology, Chemistry, Physics, English and Logical Reasoning.</p>
+        <div class="hero__actions">
+          <a href="#subjects" class="btn btn--primary">Browse subjects</a>
+          <a href="#tools" class="btn btn--outline">See study tools</a>
+        </div>
+        <dl class="hero__stats">
+          <div><dt>12,400+</dt><dd>MCQs, chapter-tagged</dd></div>
+          <div><dt>180</dt><dd>questions in a full-length paper</dd></div>
+          <div><dt>45 / 25 / 20</dt><dd>Bio / Chem / Physics weightage</dd></div>
+        </dl>
+      </div>
+      <aside class="hero__panel" aria-hidden="true">
+        <div class="mock-card">
+          <div class="mock-card__row">
+            <span class="tag tag--bio">Biology · Ch 4</span>
+            <span class="mock-timer">02:58:14</span>
+          </div>
+          <p class="mock-q">The exchange of gases in human lungs occurs primarily by:</p>
+          <ul class="mock-options">
+            <li>Active transport</li>
+            <li class="is-correct">Simple diffusion</li>
+            <li>Facilitated diffusion</li>
+            <li>Osmosis</li>
+          </ul>
+          <div class="mock-progress"><span style="width:64%"></span></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SUBJECTS -->
+    <section id="subjects" class="subjects">
+      <div class="section-head">
+        <h2>Five subjects, weighted the way MDCAT weighs them</h2>
+        <p>Every subject is broken into chapters, matched to the Punjab/Sindh/KP FSC textbooks and the current MDCAT syllabus.</p>
+      </div>
+      <div class="subject-grid">
+        <article class="subject-card subject-card--bio">
+          <span class="subject-card__pct">45%</span>
+          <h3>Biology</h3>
+          <p>23 chapters across FSC I &amp; II, from Biological Molecules to Coordination &amp; Control.</p>
+          <span class="subject-card__meta">5,200 MCQs · 23 chapters</span>
+        </article>
+        <article class="subject-card subject-card--chem">
+          <span class="subject-card__pct">25%</span>
+          <h3>Chemistry</h3>
+          <p>Organic, inorganic and physical chemistry, with reaction mechanisms drilled separately.</p>
+          <span class="subject-card__meta">3,100 MCQs · 19 chapters</span>
+        </article>
+        <article class="subject-card subject-card--phy">
+          <span class="subject-card__pct">20%</span>
+          <h3>Physics</h3>
+          <p>Numerical-heavy chapters get extra practice sets — Electrostatics and Electromagnetism especially.</p>
+          <span class="subject-card__meta">2,600 MCQs · 16 chapters</span>
+        </article>
+        <article class="subject-card subject-card--eng">
+          <span class="subject-card__pct">5%</span>
+          <h3>English</h3>
+          <p>Grammar, vocabulary and comprehension passages in the exact MDCAT format.</p>
+          <span class="subject-card__meta">900 MCQs</span>
+        </article>
+        <article class="subject-card subject-card--log">
+          <span class="subject-card__pct">5%</span>
+          <h3>Logical Reasoning</h3>
+          <p>Pattern, sequence and analytical questions — the section most students skip revising.</p>
+          <span class="subject-card__meta">600 MCQs</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools" class="tools">
+      <div class="section-head">
+        <h2>Built for the way you'll actually study</h2>
+        <p>Not just question banks — the routine around them.</p>
+      </div>
+      <div class="tool-list">
+        <div class="tool-row">
+          <div class="tool-row__num">01</div>
+          <div>
+            <h3>Chapter-wise MCQ tests</h3>
+            <p>Pick a chapter, set a question count, get instant scoring with explanations for every wrong answer.</p>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="tool-row__num">02</div>
+          <div>
+            <h3>Full-length papers</h3>
+            <p>180 questions, a 3-hour countdown, and the same subject split as the real MDCAT — so test day isn't the first time you've paced yourself.</p>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="tool-row__num">03</div>
+          <div>
+            <h3>Flashcards</h3>
+            <p>Spaced-repetition decks for definitions, reactions and formulae, generated straight from each chapter.</p>
+          </div>
+        </div>
+        <div class="tool-row">
+          <div class="tool-row__num">04</div>
+          <div>
+            <h3>Study planner &amp; timers</h3>
+            <p>A Pomodoro timer and a week-by-week planner that adapts to how many days you have left.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS / TESTIMONIALS -->
+    <section id="results" class="results">
+      <div class="section-head">
+        <h2>Students preparing with Nishaan</h2>
+      </div>
+      <div class="quote-grid">
+        <blockquote>
+          <p>I stopped re-reading Biology chapters and started testing myself on them instead. My attempt speed on MCQs is what actually changed.</p>
+          <cite>— Hina, FSC Part II, Lahore</cite>
+        </blockquote>
+        <blockquote>
+          <p>The full-length paper timer is what got me used to finishing on time. I was always running out of minutes on Physics numericals before.</p>
+          <cite>— Bilal, MDCAT repeater, Karachi</cite>
+        </blockquote>
+        <blockquote>
+          <p>Chapter-wise tests meant I could tell exactly which topics in Chemistry were actually weak, instead of guessing.</p>
+          <cite>— Areeba, FSC Part I, Faisalabad</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="section-head">
+        <h2>Questions before you start</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Is this free to use?</summary>
+          <p>Yes. Every subject, chapter test and study tool is free — this is a demo build, so there's no payment flow.</p>
+        </details>
+        <details>
+          <summary>Which curriculum does this follow?</summary>
+          <p>Chapters are matched against the FSC Pre-Medical textbooks and the current PM&amp;DC MDCAT syllabus weightage.</p>
+        </details>
+        <details>
+          <summary>Can I use this on my phone?</summary>
+          <p>Yes — the whole site, including timed papers, is built to work on a phone screen.</p>
+        </details>
+        <details>
+          <summary>Where is my account data stored?</summary>
+          <p>In this demo, your account and progress are stored only in your browser's local storage, not on a server.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="nav__brand"><span class="mark">ن</span> Nishaan</div>
+      <p>Built for FSC and MDCAT students. Not affiliated with PM&amp;DC or any board.</p>
+    </div>
+  </footer>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
