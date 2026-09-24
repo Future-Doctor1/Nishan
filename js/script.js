@@ -25,17 +25,15 @@ import {
 // ============================================================
 
 const firebaseConfig = {
-‎  apiKey: "AIzaSyCmoqqwzWdCNUdj68s73NuTI9bWK62cDkg",
-‎  authDomain: "nishan-57d56.firebaseapp.com",
-‎  projectId: "nishan-57d56",
-‎  storageBucket: "nishan-57d56.firebasestorage.app",
-‎  messagingSenderId: "505242463982",
-‎  appId: "1:505242463982:web:ba2d220fcaf74077d18dff"
-‎};
-‎
-‎// Initialize Firebase
-‎const app = initializeApp(firebaseConfig);
-‎
+  apiKey: "AIzaSyCmoqqwzWdCNUdj68s73NuTI9bWK62cDkg",
+  authDomain: "nishan-57d56.firebaseapp.com",
+  projectId: "nishan-57d56",
+  storageBucket: "nishan-57d56.firebasestorage.app",
+  messagingSenderId: "505242463982",
+  appId: "1:505242463982:web:ba2d220fcaf74077d18dff"
+};
+
+
 // ============================================================
 // INITIALIZE FIREBASE
 // ============================================================
@@ -52,6 +50,7 @@ const db = getFirestore(app);
 // ============================================================
 
 const authGate = document.getElementById("auth-gate");
+
 const site = document.getElementById("site");
 
 const tabs = document.querySelectorAll(".auth-tab");
@@ -66,9 +65,6 @@ const loginError =
 
 const signupError =
   document.getElementById("signup-error");
-
-const demoBtn =
-  document.getElementById("demo-login");
 
 const logoutBtn =
   document.getElementById("logout-btn");
@@ -162,14 +158,13 @@ forms.signup.addEventListener(
 
     signupError.textContent = "";
 
-    const data =
-      new FormData(forms.signup);
+    const data = new FormData(forms.signup);
 
     const name =
-      data.get("name").trim();
+      data.get("name")?.trim();
 
     const email =
-      data.get("email").trim().toLowerCase();
+      data.get("email")?.trim().toLowerCase();
 
     const target =
       data.get("target");
@@ -177,6 +172,8 @@ forms.signup.addEventListener(
     const password =
       data.get("password");
 
+
+    // Validate fields
 
     if (!name || !email || !target || !password) {
 
@@ -186,6 +183,8 @@ forms.signup.addEventListener(
       return;
     }
 
+
+    // Validate password
 
     if (password.length < 6) {
 
@@ -226,13 +225,21 @@ forms.signup.addEventListener(
       );
 
 
+      // Reset form
+
       forms.signup.reset();
+
+
+      // Enter website
 
       enterSite(name);
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "SIGNUP ERROR:",
+        error
+      );
 
       signupError.textContent =
         getFirebaseErrorMessage(error);
@@ -259,11 +266,13 @@ forms.login.addEventListener(
       new FormData(forms.login);
 
     const email =
-      data.get("email").trim().toLowerCase();
+      data.get("email")?.trim().toLowerCase();
 
     const password =
       data.get("password");
 
+
+    // Validate fields
 
     if (!email || !password) {
 
@@ -282,11 +291,15 @@ forms.login.addEventListener(
         password
       );
 
+
       forms.login.reset();
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "LOGIN ERROR:",
+        error
+      );
 
       loginError.textContent =
         getFirebaseErrorMessage(error);
@@ -311,7 +324,10 @@ logoutBtn.addEventListener(
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "LOGOUT ERROR:",
+        error
+      );
 
     }
 
@@ -327,6 +343,8 @@ onAuthStateChanged(
   auth,
   async (user) => {
 
+    // User is NOT logged in
+
     if (!user) {
 
       showGate();
@@ -334,6 +352,8 @@ onAuthStateChanged(
       return;
     }
 
+
+    // User IS logged in
 
     try {
 
@@ -356,17 +376,20 @@ onAuthStateChanged(
       } else {
 
         enterSite(
-          user.displayName || "Student"
+          "Student"
         );
 
       }
 
     } catch (error) {
 
-      console.error(error);
+      console.error(
+        "USER PROFILE ERROR:",
+        error
+      );
 
       enterSite(
-        user.displayName || "Student"
+        "Student"
       );
 
     }
@@ -384,29 +407,61 @@ function getFirebaseErrorMessage(error) {
   switch (error.code) {
 
     case "auth/email-already-in-use":
+
       return "This email is already registered.";
 
     case "auth/invalid-email":
+
       return "Please enter a valid email address.";
 
     case "auth/weak-password":
+
       return "Password should be at least 6 characters.";
 
     case "auth/invalid-credential":
+
       return "Incorrect email or password.";
 
     case "auth/user-not-found":
+
       return "No account exists with this email.";
 
     case "auth/wrong-password":
+
       return "Incorrect password.";
 
     case "auth/too-many-requests":
+
       return "Too many attempts. Please try again later.";
 
+    case "auth/operation-not-allowed":
+
+      return "Email/Password authentication is not enabled in Firebase.";
+
+    case "auth/invalid-api-key":
+
+      return "Firebase API key is invalid.";
+
+    case "auth/network-request-failed":
+
+      return "Network error. Please check your internet connection.";
+
+    case "permission-denied":
+
+      return "Firestore permission denied. Please check your Firestore rules.";
+
     default:
-      return "Something went wrong. Please try again.";
+
+      console.error(
+        "Firebase error code:",
+        error.code
+      );
+
+      return (
+        error.message ||
+        "Something went wrong. Please try again."
+      );
 
   }
 
-}
+    }
